@@ -1,0 +1,12 @@
+# .github/workflows/deploy.yml
+name: Deploy AI Studio
+on: [push]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          docker build -t aistudio .
+          docker push aistudio:latest
+          kubectl apply -f k8s/
