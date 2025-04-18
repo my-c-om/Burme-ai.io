@@ -1,35 +1,52 @@
-# SmartBurme AI Studio
 
-Welcome to the SmartBurme AI Interface — your all-in-one platform for experimenting with AI, including image-to-video conversion, 3D floating UI scenes, and smart tools.
+POST /convert
+Content-Type: multipart/form-data
 
-## Features
-
-- Floating animation & 3D background scene
-- Gradient-rich UI with a modern, smooth layout
-- Image to Video Converter powered by AI
-- Site Menu with Settings, Tools, Admin Panel & About
-- Modular File System for easy extension
-
-## File Structure
-
-```
-AI-Studio/
-├── public/
-│   ├── images/
-│   ├── videos/
-│   └── models/
-├── src/
-│   ├── css/
-│   │   ├── main.css       # အခုနက CSS ကိုထည့်
-│   │   └── animations.css
-│   ├── js/
-│   │   ├── threeScene.js
-│   │   └── app.js
-│   └── index.html
-└── server/
-    ├── main.py
-    └── requirements.txt
-
-```
-
-https://GitHub.com/Smartburme/ai က REDME.md ရေးပေးရမယ့် link
+Params:
+- file: Image (JPEG/PNG)  
+- duration: Video length (3-10 sec)  
+- style: Art style (van_gogh/ukiyoe)  
+🖥️ UI Components
+html
+<!-- Main Structure -->
+<div class="glass-panel">
+  <canvas id="preview-canvas"></canvas>
+  <input type="file" id="image-upload">
+  <button id="convert-btn" class="pulse">
+    <i class="fas fa-magic"></i> Convert
+  </button>
+</div>
+🛠️ Configuration
+python
+# server/config.py
+class Settings:
+    MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
+    ALLOWED_TYPES = ["image/jpeg", "image/png"]
+    OUTPUT_FPS = 24
+🐳 Docker Deployment
+dockerfile
+FROM python:3.9-slim
+WORKDIR /app
+COPY server/requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0"]
+📊 Project Structure
+├── src/               # Frontend
+│   ├── css/           # Glassmorphism styles
+│   ├── js/            # Three.js components
+│   └── index.html     # Main entry point
+└── server/            # Backend
+    ├── main.py        # FastAPI routes
+    ├── ai_processor/  # CV algorithms
+    └── tests/         # Pytest cases
+📝 Notes
+diff
++ New Features  
+- Image preview before conversion  
+- Style transfer options  
+! Known Issues  
+- Large files (>5MB) may timeout
+Access at: http://localhost:8000
+API Docs: http://localhost:8000/docs
+Production Tip: Use Gunicorn with 4 workers for better performance
