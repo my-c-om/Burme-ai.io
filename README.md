@@ -13,17 +13,22 @@ Welcome to the SmartBurme AI Interface — your all-in-one platform for experime
 ## File Structure
 
 ```
-
-├── index.html
-├── styles/
-├── main.css │
-└── animations.css
-├── scripts/│
-             ├── app.js │
-             └── threeScene.js
-├── assets/ │
-├── images/ │
-└── models/ (3D models)
+AI-Studio/
+├── public/
+│   ├── images/
+│   ├── videos/
+│   └── models/
+├── src/
+│   ├── css/
+│   │   ├── main.css       # အခုနက CSS ကိုထည့်
+│   │   └── animations.css
+│   ├── js/
+│   │   ├── threeScene.js
+│   │   └── app.js
+│   └── index.html
+└── server/
+    ├── main.py
+    └── requirements.txt
 
 ```
 
