@@ -1,5 +1,7 @@
-/* ===== Modern Glass UI Design ===== */
+/* ===== AI Studio - Modern CSS ===== */
+/* Designed for Glass Morphism + 3D Effects */
 :root {
+  /* New Color Palette */
   --primary: #3b82f6;      /* Vibrant Blue */
   --primary-dark: #2563eb;
   --secondary: #8b5cf6;    /* Soft Purple */
@@ -9,9 +11,10 @@
   --accent: #f59e0b;       /* Golden Yellow */
   --glass: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
 }
 
-/* ===== Base Reset ===== */
+/* ===== Base Styles ===== */
 * {
   margin: 0;
   padding: 0;
@@ -29,28 +32,35 @@ body {
 
 /* ===== Glass Panel Effect ===== */
 .glass-panel {
-  background: var(--glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: linear-gradient(
+    135deg,
+    var(--glass),
+    var(--glass-highlight)
+  );
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-radius: 16px;
   border: 1px solid var(--glass-border);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .glass-panel:hover {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
 }
 
-/* ===== Header ===== */
+/* ===== Header Styles ===== */
 header {
-  padding: 1rem 2rem;
+  padding: 1.2rem 3rem;
   position: fixed;
   width: 100%;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: rgba(15, 23, 42, 0.9);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 nav ul {
@@ -88,39 +98,37 @@ nav a:hover::after {
   width: 100%;
 }
 
+/* ===== Main Content ===== */
+main {
+  padding-top: 6rem;
+}
+
+section {
+  padding: 4rem 2rem;
+}
+
 /* ===== Hero Section ===== */
 .hero-section {
-  padding: 8rem 2rem 4rem;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
-.preview-container {
-  width: 100%;
+/* ===== Upload Area ===== */
+.upload-area {
   max-width: 800px;
-  padding: 2rem;
+  margin: 0 auto;
+  padding: 3rem;
   text-align: center;
-}
-
-#preview-canvas {
-  width: 100%;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  transition: all 0.5s;
-}
-
-/* ===== Upload Zone ===== */
-.upload-zone {
-  margin-top: 2rem;
 }
 
 .upload-label {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.8rem;
   padding: 1.2rem 2.5rem;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   color: white;
@@ -128,11 +136,12 @@ nav a:hover::after {
   cursor: pointer;
   transition: all 0.3s;
   font-weight: 600;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
 .upload-label:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
 }
 
 /* ===== Style Grid ===== */
@@ -146,11 +155,11 @@ nav a:hover::after {
 .style-card {
   overflow: hidden;
   border-radius: 12px;
-  transition: all 0.3s;
+  transition: all 0.4s;
 }
 
 .style-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-8px) scale(1.02);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -161,48 +170,32 @@ nav a:hover::after {
   border-radius: 12px 12px 0 0;
 }
 
-.style-card h3 {
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.5);
-  text-align: center;
-}
-
-/* ===== Action Buttons ===== */
-.action-bar {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  display: flex;
-  gap: 1rem;
-  z-index: 100;
-}
-
-.glass-btn {
-  padding: 1rem 1.5rem;
-  border-radius: 50px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-}
-
-#convert-btn {
+/* ===== Buttons ===== */
+.btn {
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
-#voice-btn {
-  width: 50px;
-  height: 50px;
-  justify-content: center;
-  background: var(--accent);
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.btn:active {
+  transform: scale(0.98);
 }
 
 /* ===== Animations ===== */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
 }
 
 @keyframes pulse {
@@ -212,7 +205,7 @@ nav a:hover::after {
 }
 
 .floating {
-  animation: float 3s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite;
 }
 
 .pulse {
@@ -222,20 +215,21 @@ nav a:hover::after {
 /* ===== Responsive Design ===== */
 @media (max-width: 768px) {
   header {
-    flex-direction: column;
     padding: 1rem;
+    flex-direction: column;
   }
   
   nav ul {
     margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .upload-area {
+    padding: 2rem 1rem;
   }
   
   .style-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .action-bar {
-    bottom: 1rem;
-    right: 1rem;
   }
 }
