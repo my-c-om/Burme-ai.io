@@ -1,6 +1,29 @@
-# markdown
 # AI Studio - Image to Video Converter  
-# Aung Myo Kyaw 
+# Design - Aung Myo Kyaw ( Wayne )
+
+📌 နိဒါန်း
+AI Studio သည် AI နည်းပညာသုံး ဓာတ်ပုံမှ ဗီဒီယိုပြောင်းပေးသော အဆင့်မြင့် Web Application တစ်ခုဖြစ်ပါသည်။ 3D နှင့် Glassmorphism UI ဒီဇိုင်းများပါဝင်ပြီး ခေတ်မီသော Feature များစွာပါရှိပါသည်။
+
+✨ အထူးလုပ်ဆောင်ချက်များ
+🖼️ ဓာတ်ပုံမှ ဗီဒီယိုအလိုအလျောက်ပြောင်းခြင်း
+
+🌈 Gradient-rich UI နှင့် Glassmorphism Effect
+
+🌀 3D Floating Animation များ
+
+🌐 Multi-language Support (English/မြန်မာ)
+
+⚡ Real-time Preview
+
+🎨 AI Style Transfer Options
+
+🛠️ လိုအပ်သော Software များ
+Python 3.8+
+
+Node.js (Frontend အတွက်)
+
+Git
+
 `AI-powered image-to-video conversion with 3D interactive UI`
 
 ## 📦 Tech Stack  
