@@ -1,65 +1,43 @@
-// threeScene.js
-import * as THREE from 'https://cdn.skypack.dev/three@0.142.0';
+// scripts/threeScene.js
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-let scene, camera, renderer, particles;
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 
-function init() {
-  const container = document.getElementById("scene");
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.querySelector('.three-scene').appendChild(renderer.domElement);
 
-  // Scene Setup
-  scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera(
-    75,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
-  );
-  camera.position.z = 5;
+// Floating Particles
+const particlesGeometry = new THREE.BufferGeometry();
+const particlesCount = 1000;
+const posArray = new Float32Array(particlesCount * 3);
 
-  renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  container.appendChild(renderer.domElement);
-
-  // Particle Geometry
-  const geometry = new THREE.BufferGeometry();
-  const vertices = [];
-
-  for (let i = 0; i < 1000; i++) {
-    const x = THREE.MathUtils.randFloatSpread(10);
-    const y = THREE.MathUtils.randFloatSpread(10);
-    const z = THREE.MathUtils.randFloatSpread(10);
-    vertices.push(x, y, z);
-  }
-
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-
-  const material = new THREE.PointsMaterial({
-    color: 0xffffff,
-    size: 0.05,
-    transparent: true,
-    blending: THREE.AdditiveBlending
-  });
-
-  particles = new THREE.Points(geometry, material);
-  scene.add(particles);
-
-  animate();
+for (let i = 0; i < particlesCount * 3; i++) {
+  posArray[i] = (Math.random() - 0.5) * 10;
 }
+
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+const particlesMaterial = new THREE.PointsMaterial({
+  size: 0.02,
+  color: 0xffffff,
+});
+const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+scene.add(particlesMesh);
+
+camera.position.z = 3;
 
 function animate() {
   requestAnimationFrame(animate);
-
-  particles.rotation.y += 0.0015;
-  particles.rotation.x += 0.0008;
-
+  particlesMesh.rotation.x += 0.0005;
+  particlesMesh.rotation.y += 0.0005;
   renderer.render(scene, camera);
 }
+animate();
 
-window.addEventListener('load', init);
 window.addEventListener('resize', () => {
-  const container = document.getElementById("scene");
-  camera.aspect = container.clientWidth / container.clientHeight;
+  camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });
