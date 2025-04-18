@@ -1,26 +1,21 @@
-# Burme-ai.io
-#### 1. **Edit Your React App**
-- The main React entry file is usually:  
-  📁 `src/App.jsx` (or `App.tsx` if using TypeScript)
-- Try modifying the code and see **live updates** (Hot Module Replacement - HMR).
-
-#### 2. **Project Structure**
+# AI
+# Image to video 
 ```
-my-react-app/
-├── node_modules/
-├── public/
-├── src/
-│   ├── App.jsx (or .tsx)
-│   ├── main.jsx (entry file)
-│   └── (other assets)
+structure is
+---
 ├── index.html
-├── package.json
-└── vite.config.js
-```
+├── styles/
+│   ├── main.css
+│   └── animations.css
+├── scripts/
+│   ├── app.js
+│   └── threeScene.js
+├── assets/
+│   ├── images/
+│   └── models/ (3D models)
 
-#### 3. **Key Commands**
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start dev server (auto-reload) |
-| `npm run build` | Build for production (outputs to `/dist`) |
-| `npm run preview` | Locally preview the production build |
+```
+# brush to
+---
+
+link[https://github.com/yourusername/SmartBurme.git]
