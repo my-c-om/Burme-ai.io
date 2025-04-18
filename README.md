@@ -17,5 +17,4 @@ structure is
 ```
 # brush to
 ---
-
-link[https://github.com/yourusername/SmartBurme.git]
+[https://github.com/SmartBurme/ai.git]
