@@ -1,3 +1,34 @@
+markdown
+# AI Studio - Image to Video Converter  
+
+`AI-powered image-to-video conversion with 3D interactive UI`
+
+## 📦 Tech Stack  
+```python
+# Backend
+FastAPI (Python) + OpenCV + Uvicorn
+
+# Frontend  
+HTML5, CSS3 (Glassmorphism), JavaScript, Three.js
+
+# AI Components  
+Stable Diffusion (Future Integration)
+🚀 Quick Start
+bash
+# 1. Clone repo
+git clone https://github.com/yourrepo/ai-studio.git
+cd ai-studio
+
+# 2. Setup backend
+cd server
+pip install -r requirements.txt
+uvicorn main:app --reload
+
+# 3. Run frontend
+cd ../src
+python -m http.server 8001
+🌐 API Documentation
+http
 
 POST /convert
 Content-Type: multipart/form-data
