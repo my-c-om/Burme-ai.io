@@ -111,6 +111,18 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0"]
     ├── ai_processor/  # CV algorithms
     └── tests/         # Pytest cases
 ```
+# Unit tests များပြုလုပ်ရန်
+pytest tests/ --cov=server --cov-report=html
+
+# Load testing
+locust -f load_test.py --host=https://api.aistudio.com
+```
+- [ ] Real-time Collaboration (WebSocket)
+- [ ] AI Background Removal
+- [ ] Batch Processing
+- [ ] Mobile App (Flutter)
+- [ ] Premium Subscription
+```
 📝 Notes
 ```
 # diff
