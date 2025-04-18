@@ -156,3 +156,18 @@ async def health_check():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+# server/main.py
+from fastapi import FastAPI, Depends
+from fastapi_limiter import FastAPILimiter
+from fastapi_limiter.depends import RateLimiter
+import redis.asyncio as redis
+
+app = FastAPI(
+    title="AI Studio",
+    dependencies=[Depends(RateLimiter(times=100, minutes=1))]
+)
+
+@app.on_event("startup")
+async def startup():
+    redis_connection = redis.from_url("redis://localhost:6379")
+    await FastAPILimiter.init(redis_connection)
