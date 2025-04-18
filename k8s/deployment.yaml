@@ -1,0 +1,22 @@
+# k8s/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aistudio
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: aistudio
+  template:
+    spec:
+      containers:
+      - name: aistudio
+        image: aistudio:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: REDIS_HOST
+          value: "redis-service"
+        - name: SHARD_CONFIG
+          value: '{"shard1":"postgresql://shard1","shard2":"postgresql://shard2"}'
