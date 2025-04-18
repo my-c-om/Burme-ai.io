@@ -1,9 +1,20 @@
-/* styles/animations.css */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+/* animations.css ကို ဒီလိုဖြည့်စွက်ပါ */
+.menu-item {
+  transition: transform 0.3s, opacity 0.3s;
+  transform-origin: left center;
 }
 
-.floating-element {
-  animation: float 3s ease-in-out infinite;
+.menu:hover .menu-item {
+  animation: staggerFade 0.5s forwards;
+}
+
+@keyframes staggerFade {
+  0% { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.upload-area.drag-over {
+  border-color: var(--accent);
+  background: rgba(245, 158, 11, 0.1);
+  transform: scale(1.02);
 }
