@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Burme - Image to AI Videos</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Floating Animation Elements -->
+    <div class="floating-circle"></div>
+    <div class="floating-square"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Site Menu -->
+        <nav class="site-menu">
+            <a href="#home">Home</a>
+            <a href="#convert">Convert</a>
+            <a href="#settings">Settings</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <!-- Image-to-Video Scene -->
+        <div class="scene-box" id="scene">
+            <h2>🖼️ Image to Video</h2>
+            <input type="file" id="imageUpload">
+            <button id="generateBtn">Generate Video</button>
+            <div class="output-video"></div>
+        </div>
+
+        <!-- 3D Floating Bottom -->
+        <div class="floating-3d-bottom" id="3dContainer"></div>
+    </div>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/threeScene.js"></script>
+</body>
+</html>
