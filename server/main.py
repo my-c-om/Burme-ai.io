@@ -1,24 +1,26 @@
-# server/main.py ကို ဒီလိုမွမ်းမံပါ
-from fastapi import BackgroundTasks
-from PIL import Image
+# server/main.py
+from fastapi import FastAPI, UploadFile
+import cv2
 import numpy as np
 
-async def process_video_in_background(image_path: str):
-    # AI Model ကို တကယ်ချိတ်ဆက်ခြင်း
-    img = Image.open(image_path)
-    frames = []
-    
-    for i in range(24*5):  # 5-second video
-        processed_frame = apply_ai_effects(img, frame_index=i)
-        frames.append(processed_frame)
-    
-    save_as_mp4(frames, "output/result.mp4")
+app = FastAPI()
 
 @app.post("/convert")
-async def convert_image(file: UploadFile, background_tasks: BackgroundTasks):
-    temp_path = f"temp/{file.filename}"
-    with open(temp_path, "wb") as buffer:
+async def convert_image(file: UploadFile):
+    # 1. Save uploaded image
+    with open(f"temp/{file.filename}", "wb") as buffer:
         buffer.write(await file.read())
     
-    background_tasks.add_task(process_video_in_background, temp_path)
-    return {"message": "Processing started", "status_url": "/status/123"}
+    # 2. Simple OpenCV processing (Replace with real AI later)
+    img = cv2.imread(f"temp/{file.filename}")
+    height, width = img.shape[:2]
+    
+    # 3. Create sample video
+    video_path = f"output/{file.filename}.mp4"
+    writer = cv2.VideoWriter(video_path, cv2.VideoWriter_fourcc(*'mp4v'), 24, (width, height))
+    
+    for _ in range(24 * 3):  # 3-second video
+        writer.write(img)
+    
+    writer.release()
+    return {"video_url": video_path}
