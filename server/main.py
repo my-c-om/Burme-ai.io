@@ -171,3 +171,14 @@ app = FastAPI(
 async def startup():
     redis_connection = redis.from_url("redis://localhost:6379")
     await FastAPILimiter.init(redis_connection)
+
+# server/main.py
+from fastapi import FastAPI
+from server.config.gemini_config import init_gemini
+from server.api.endpoints import ai
+
+app = FastAPI()
+app.include_router(ai.router)
+
+# Initialize Gemini
+init_gemini("YOUR_API_KEY")
